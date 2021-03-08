@@ -27,6 +27,7 @@ module "eks" {
       asg_desired_capacity = 3
       asg_max_size         = 5
       instance_type        = "m5.large"
+      root_volume_type     = "gp2"
     }
   ]
 }
