@@ -27,6 +27,12 @@ variable "cluster_version" {
   default     = "1.21"
 }
 
+variable "cluster_enabled_log_types" {
+  type        = list(string)
+  description = "The Kubernetes log types that will be enabled for our clusters"
+  default     = ["api", "audit", "authenticator", "controllerManager", "scheduler"]
+}
+
 variable "cidr" {
   type        = string
   description = "The CIDR block to use for this demo"
