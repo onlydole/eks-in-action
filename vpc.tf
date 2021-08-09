@@ -1,11 +1,19 @@
+# https://registry.terraform.io/providers/hashicorp/aws/latest/docs/data-sources/availability_zones
+# Filter out opt-in availability zones (local zones, as an example)
+data "aws_availability_zones" "available" {
+  filter {
+    name   = "opt-in-status"
+    values = ["opt-in-not-required"]
+  }
+}
 module "vpc" {
   source  = "terraform-aws-modules/vpc/aws"
-  version = "2.77.0"
+  version = "3.2.0"
 
   name = var.project_name
   cidr = var.cidr
 
-  azs             = var.availability_zones
+  azs             = slice(data.aws_availability_zones.available.names, 0, 3)
   private_subnets = local.private_subnets
   public_subnets  = local.public_subnets
 
