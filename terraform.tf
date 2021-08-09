@@ -1,30 +1,39 @@
 terraform {
   required_providers {
+    # https://registry.terraform.io/providers/hashicorp/null/latest
     null = {
       source  = "hashicorp/null"
       version = "3.1.0"
     }
+
+    # https://registry.terraform.io/providers/hashicorp/template/latest
     template = {
       source  = "hashicorp/template"
       version = "2.2.0"
     }
+
+    # https://registry.terraform.io/providers/hashicorp/kubernetes/latest
     kubernetes = {
       source  = "hashicorp/kubernetes"
-      version = "2.0.2"
+      version = "2.4.1"
     }
+
+    # https://registry.terraform.io/providers/hashicorp/aws/latest
     aws = {
       source  = "hashicorp/aws"
-      version = "3.31.0"
+      version = "3.53.0"
     }
+
+    #
     random = {
       source  = "hashicorp/random"
       version = "3.1.0"
     }
+
+    # https://registry.terraform.io/providers/hashicorp/local/latest
     local = {
       source  = "hashicorp/local"
       version = "2.1.0"
     }
   }
-
-  required_version = "0.14.7"
 }
