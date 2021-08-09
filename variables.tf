@@ -21,16 +21,10 @@ variable "region" {
   default     = "us-west-2"
 }
 
-variable "availability_zones" {
-  type        = list(string)
-  description = "Availability zones that will be used in this demo."
-  default     = ["us-west-2a", "us-west-2b", "us-west-2c"]
-}
-
 variable "cluster_version" {
   type        = string
   description = "The Kubernetes version for our clusters"
-  default     = "1.19"
+  default     = "1.21"
 }
 
 variable "cidr" {
