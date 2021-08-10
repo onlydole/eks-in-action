@@ -30,7 +30,7 @@ variable "cluster_version" {
 variable "cluster_instance_type" {
   type        = string
   description = "EC2 instance type for the EKS autoscaling group."
-  default     = "m5.medium"
+  default     = "m5.large"
 }
 variable "cluster_asg_desired_capacity" {
   type        = number
