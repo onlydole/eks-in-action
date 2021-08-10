@@ -14,20 +14,25 @@ provider "kubernetes" {
 
 module "eks" {
   source  = "terraform-aws-modules/eks/aws"
-  version = "14.0.0"
+  version = "17.1.0"
 
-  cluster_name     = var.project_name
-  cluster_version  = var.cluster_version
-  subnets          = module.vpc.private_subnets
-  vpc_id           = module.vpc.vpc_id
-  write_kubeconfig = false
+  cluster_name              = var.project_name
+  cluster_version           = var.cluster_version
+  subnets                   = module.vpc.private_subnets
+  vpc_id                    = module.vpc.vpc_id
+  cluster_enabled_log_types = var.cluster_enabled_log_types
+  write_kubeconfig          = var.cluster_write_kubeconfig
+  cluster_encryption_config = [
+    {
+      provider_key_arn = aws_kms_key.eks.arn
+      resources        = ["secrets"]
+    }
+  ]
   worker_groups = [
     {
-      name                 = "worker"
-      asg_desired_capacity = 3
-      asg_max_size         = 5
-      instance_type        = "m5.large"
-      root_volume_type     = "gp2"
+      asg_desired_capacity = var.cluster_asg_desired_capacity
+      asg_max_size         = var.cluster_asg_max_size
+      instance_type        = var.cluster_instance_type
     }
   ]
 }
