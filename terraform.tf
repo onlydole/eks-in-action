@@ -24,7 +24,7 @@ terraform {
       version = "3.53.0"
     }
 
-    #
+    # https://registry.terraform.io/providers/hashicorp/random/latest
     random = {
       source  = "hashicorp/random"
       version = "3.1.0"
