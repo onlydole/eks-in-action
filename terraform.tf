@@ -15,7 +15,7 @@ terraform {
     # https://registry.terraform.io/providers/hashicorp/kubernetes/latest
     kubernetes = {
       source  = "hashicorp/kubernetes"
-      version = "2.4.1"
+      version = "2.5.1"
     }
 
     # https://registry.terraform.io/providers/hashicorp/aws/latest

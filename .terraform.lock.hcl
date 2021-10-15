@@ -39,21 +39,21 @@ provider "registry.terraform.io/hashicorp/cloudinit" {
 }
 
 provider "registry.terraform.io/hashicorp/kubernetes" {
-  version     = "2.4.1"
-  constraints = ">= 1.11.1, 2.4.1"
+  version     = "2.5.1"
+  constraints = ">= 1.11.1, 2.5.1"
   hashes = [
-    "h1:RpE4kNQYkGxIyHyIEHXcdt/vKCtTVU2NNzTrOK4hb9E=",
-    "zh:10a368f3a3f26d821f02b55f0c42bdd4d2cd0dc5e2568c513bce39d92d25526f",
-    "zh:2183272a6d44f23d562d47ff4d6592685d8797838bdae69a50f92121743b020f",
-    "zh:24c492d61ce4dbcac4bb4410bd5e657ab28d19ab320d41104148ee626b44f5ed",
-    "zh:291380db0cd581d806158e5ddfd7133592055151109fcf0c923644cede5f30c7",
-    "zh:46933ddae44108d1a2956d917bafdb8879147b204b1bfac0c238773d2587e288",
-    "zh:5b96c1c330d709d87faa44f1cc9b1db87baeba5056638fe07c51a9b5a67f297e",
-    "zh:9fbb4ac6de96f68df324adbb77fd5eee6138f534f5393dc3bac18e615c75e0d0",
-    "zh:b8da6bbb97c20ec6e26c0160060c24d4e91b5057342b8b93a43f4019ab36e344",
-    "zh:c12390d668ef2f4c943c385de3befb54c0bfd0f9a3aa28b6aec55f7db4f4a518",
-    "zh:dee3d13f664037ada51e6f51c7e1c1361e643e1e61fbc9403b0f3985caa29c90",
-    "zh:ed10c04a636fa4a0f6e5e6068cb2f9a0f976b596cbabb9bd429631e3ba7fa35a",
+    "h1:wg+6NFJUKrwccLZQPkJTgdRMgh709ZX+sBuJ9IlJoNU=",
+    "zh:05f42363a1bdf1858bfdb56dc55509a066a640d05ef62e0fddcf7cc4d97a0dfa",
+    "zh:2b974bebbc7823f759159fcf1efe0717930b7756f643ff1551e2d633a6651d10",
+    "zh:329817c534ae807ae88030f78e5c1ad1f124e9d5d7ae2830229a6d18ba7dd22e",
+    "zh:3c41ea252ded2788d7c47d613e9c1a6543d61e67905f9b1ebc8be23df556e844",
+    "zh:3fdff88596baf4f76dc64e016a5f7ba455b8b0b46b45e124e03074746f6a4d1b",
+    "zh:480819de824ab56074c4fcb9ebc5d7c7d44dda5fe6e9a3bc0b858b795f74ad41",
+    "zh:498fa4b9a5e73afe7560fe4540553a4e1e6a5691acc9384f0ebee32af0afe698",
+    "zh:6dfb17f21cc3dfd5096a1cf0d01603527213b127dade411f79c524d2bddc78b9",
+    "zh:b5132f132af0b0927d9cad126909d375aad2c11abed896a345529f1a2680eda8",
+    "zh:c0fc51da9dff350d29d3887660e8d390b2402ee415c190e17dbcf271d2234c16",
+    "zh:dfb1c8dd3409c7b09e2ffeeeadfa41cad076cc06b0d95a303ee096c01e9e68cf",
   ]
 }
 
