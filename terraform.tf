@@ -15,13 +15,13 @@ terraform {
     # https://registry.terraform.io/providers/hashicorp/kubernetes/latest
     kubernetes = {
       source  = "hashicorp/kubernetes"
-      version = "2.4.1"
+      version = "2.6.1"
     }
 
     # https://registry.terraform.io/providers/hashicorp/aws/latest
     aws = {
       source  = "hashicorp/aws"
-      version = "3.54.0"
+      version = "3.64.1"
     }
 
     # https://registry.terraform.io/providers/hashicorp/random/latest
