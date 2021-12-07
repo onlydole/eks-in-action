@@ -39,21 +39,21 @@ provider "registry.terraform.io/hashicorp/cloudinit" {
 }
 
 provider "registry.terraform.io/hashicorp/kubernetes" {
-  version     = "2.6.1"
-  constraints = ">= 1.11.1, 2.6.1"
+  version     = "2.7.1"
+  constraints = ">= 1.11.1, 2.7.1"
   hashes = [
-    "h1:DWgawNO2C7IuXC2v9IjTSsqs1vZHSAbP4ilWQ0LdbwI=",
-    "zh:081fbaf9441ebb278753dcf05f318fa7d445e9599a600d7c525e9a18b871d4c8",
-    "zh:143bfbe871c628981d756ead47486e807fce876232d05607e0b8852ebee4eed8",
-    "zh:34f413a644eb952e3f041d67ef19200f4c286d374eae87b60fafdd8bf6bb5654",
-    "zh:370562be70233be730e1876d565710c3ef477e047f209cb3dff8a4a3217a6461",
-    "zh:443021df6d56e59e4d8dda8e57b506affff32b8a22de09661d21b98bc781fefb",
-    "zh:51a9501360b58adf9ee6e09fb81f555042ebc909ab36e06ccfc5e701e91f9923",
-    "zh:7d41d48b8291b98e0a4b7a1f79a9d1fe140a2e0d8df422c5b48cbae4c3fa615a",
-    "zh:881b3e44814d7d49a5820e2e4b13ee3d000b5baf7957df774a909f17472ece8a",
-    "zh:b860ff68a944de63fbe0a624c41f2e373711a2da4298c0f0cb151e00fb32a6b3",
-    "zh:c4ab48ea6e0f8d4a6db1abab1877addb2b21ecd126e505c74b8c85804bd92cbe",
-    "zh:e96589575dfd31eab48fcc85466dd49895925473c60c802b346cdb4037953350",
+    "h1:Df9MZxqgXueXVObeAiPPDQ5aLwQ2bJ2r1gul/IYSxeg=",
+    "zh:0da320fd81ece6696f7cceda35e459ee97cae8955088af38fc7f2feab1dce924",
+    "zh:37d304b8b992518c9c12e8f10437b9d4a0cc5a823c9421ac794ad2347c4d1122",
+    "zh:3d4e12fb9588c3b2e782d392fea758c6982e5d653154bec951e949155bcbc169",
+    "zh:6bb32b8d5cccf3e3ae7c124ed27df76dc7653ca760c132addeee15272630c930",
+    "zh:94775153b90e285876fc17261e8f5338a1ff732f4133336cc68754acb74570b6",
+    "zh:a665d1336765cdf8620a8797fd4e7e3cecf789e96e59ba80634336a4390df377",
+    "zh:aa8b35e9958cb89f01c115e8866a07d5468fb53f1c227d673e94f7ee8fb76242",
+    "zh:b7a571336387d773a74ed6eefa3843ff78d3662f2745c99c95008002a1341662",
+    "zh:c50d661782175d50ea4952fe943b0e4a3e33c27aa69e5ff21b3cbfa513e90d0a",
+    "zh:e0999b349cc772c75876adbc2a13b5dc256d3ecd7e4aa91baee5fdfcecaa7465",
+    "zh:e1399aec06a7aa98e9b0f64b4281697247f338a8a40b79f5f6ebfd43bf4ce1e2",
   ]
 }
 
