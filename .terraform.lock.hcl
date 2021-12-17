@@ -2,21 +2,21 @@
 # Manual edits may be lost in future updates.
 
 provider "registry.terraform.io/hashicorp/aws" {
-  version     = "3.64.2"
-  constraints = ">= 3.40.0, >= 3.56.0, >= 3.63.0, 3.64.2"
+  version     = "3.70.0"
+  constraints = ">= 3.40.0, >= 3.56.0, >= 3.63.0, 3.70.0"
   hashes = [
-    "h1:eXusrZ56Ye4gprLzI3dXBy50DV+sbY5gOoJ7cNuouzA=",
-    "zh:0b029a2282beabfe410eb2969e18ca773d3473415e442be4dc8ce0eb6d1cd8c5",
-    "zh:3209de3266a1138f1ccb09f094fdd98b6f55afc06e291db0abe092ec5dbe7640",
-    "zh:40648266551631cbc15f8a76e80faf300510e3b38c2544d43fc25e37e6802727",
-    "zh:483c8af92ae70146f2790a70c1a810251e7135aa912b66e769c934eddceebe32",
-    "zh:4d106d8d415d8df342f3f85e58c35418e6c55e3cb7f02897f832cefac4dca68c",
-    "zh:972626a6ddb31d5216606d12ab5c30fbf8d51ed2bbe0efcdd7cffa68c1141557",
-    "zh:a230d55ec52b1695148d40296877ee23e0b302e817154f9b838eb117c87b13fa",
-    "zh:c95fddfbd7f870db949da0601323e866e0f0fb0d4a93e96725ae5b88029e84d5",
-    "zh:ea0c7f568074f835f22273c8e7e61e87f5277e32004c72122915fd3c8df49ccc",
-    "zh:f96d25887e6e2d2ae47659e2c586efea2167995b59a479ae65a02b097da86474",
-    "zh:fe7502d8e52d3b5ccb2b3c178e7ea894344783093aa71ffb20e978914c976182",
+    "h1:E5IKHXzPGGSizZM5rHKzNCzpwQ7lWPXmmJnms82uzDk=",
+    "zh:0af710e528e21b930899f0ac295b0ceef8ad7b623dd8f38e92c8ec4bc7af0321",
+    "zh:4cabcd4519c0aae474d91ae67a8e3a4a8c39c3945c289a9cf7c1409f64409abe",
+    "zh:58da1a436facb4e4f95cd2870d211ed7bcb8cf721a4a61970aa8da191665f2aa",
+    "zh:6465339475c1cd3c16a5c8fee61304dcad2c4a27740687d29c6cdc90d2e6423d",
+    "zh:7a821ed053c355d70ebe33185590953fa5c364c1f3d66fe3f9b4aba3961646b1",
+    "zh:7c3656cc9cc1739dcb298e7930c9a76ccfce738d2070841d7e6c62fbdae74eef",
+    "zh:9d9da9e3c60a0c977e156da8590f36a219ae91994bb3df5a1208de2ab3ceeba7",
+    "zh:a3138817c86bf3e4dca7fd3a92e099cd1bf1d45ee7c7cc9e9773ba04fc3b315a",
+    "zh:a8603044e935dfb3cb9319a46d26276162c6aea75e02c4827232f9c6029a3182",
+    "zh:aef9482332bf43d0b73317f5909dec9e95b983c67b10d72e75eacc7c4f37d084",
+    "zh:fc3f3cad84f2eebe566dd0b65904c934093007323b9b85e73d9dd4535ceeb29d",
   ]
 }
 
