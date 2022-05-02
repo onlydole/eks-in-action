@@ -21,7 +21,7 @@ terraform {
     # https://registry.terraform.io/providers/hashicorp/aws/latest
     aws = {
       source  = "hashicorp/aws"
-      version = "3.64.2"
+      version = "4.12.1"
     }
 
     # https://registry.terraform.io/providers/hashicorp/random/latest
