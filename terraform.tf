@@ -3,7 +3,7 @@ terraform {
     # https://registry.terraform.io/providers/hashicorp/null/latest
     null = {
       source  = "hashicorp/null"
-      version = "3.1.0"
+      version = "3.1.1"
     }
 
     # https://registry.terraform.io/providers/hashicorp/template/latest
