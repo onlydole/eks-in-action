@@ -16,6 +16,7 @@ module "eks" {
   source  = "terraform-aws-modules/eks/aws"
   version = "18.26.5"
 
+  ami_type                  = "AL2_x86_64"
   manage_aws_auth_configmap = true
   cluster_name              = var.project_name
   cluster_version           = var.cluster_version
