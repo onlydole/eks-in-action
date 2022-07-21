@@ -30,12 +30,18 @@ variable "cluster_version" {
 variable "cluster_instance_type" {
   type        = string
   description = "EC2 instance type for the EKS autoscaling group."
-  default     = "m5.large"
+  default     = "t4g.large"
 }
 variable "cluster_asg_desired_capacity" {
   type        = number
   description = "The default number of EC2 instances our EKS cluster runs."
   default     = 3
+}
+
+variable "cluster_asg_min_size" {
+  type        = number
+  description = "The minimum number of EC2 instances our EKS cluster will have."
+  default     = 1
 }
 
 variable "cluster_asg_max_size" {

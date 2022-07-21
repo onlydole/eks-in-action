@@ -30,12 +30,11 @@ module "eks" {
   ]
 
   eks_managed_node_groups = {
-    default = {
-      min_size     = var.cluster_instance_type
-      max_size     = var.cluster_asg_max_size
-      desired_size = var.cluster_asg_desired_capacity
-
-      instance_types = ["t4g.large"]
+    worker = {
+      min_size       = var.cluster_asg_min_size
+      max_size       = var.cluster_asg_max_size
+      desired_size   = var.cluster_asg_desired_capacity
+      instance_types = var.cluster_instance_type
     }
   }
 }
