@@ -35,5 +35,11 @@ terraform {
       source  = "hashicorp/local"
       version = "2.2.3"
     }
+
+    # https://registry.terraform.io/providers/hashicorp/tls/latest
+    tls = {
+      source  = "hashicorp/tls"
+      version = "3.4.0"
+    }
   }
 }
