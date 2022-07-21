@@ -1,0 +1,46 @@
+// For format details, see https://aka.ms/devcontainer.json. For config options, see the README at:
+// https://github.com/microsoft/vscode-dev-containers/tree/v0.238.1/containers/codespaces-linux
+{
+	"name": "GitHub Codespaces (Default)",
+
+	"build": {
+		"dockerfile": "Dockerfile"
+	},
+
+  "features": {
+    "terraform": {
+        "version": "latest",
+        "tflint": "latest"
+    }
+  },
+
+	// Configure tool-specific properties.
+	"customizations": {
+		// Configure properties specific to VS Code.
+		"vscode": {
+			// Add the IDs of extensions you want installed when the container is created.
+			"extensions": [
+				"GitHub.vscode-pull-request-github",
+        "GitHub.copilot",
+        "HashiCorp.terraform"
+			]
+		}
+	},
+
+	"remoteUser": "codespace",
+
+	"overrideCommand": false,
+
+	"mounts": ["source=codespaces-linux-var-lib-docker,target=/var/lib/docker,type=volume"],
+
+	"runArgs": [
+		"--cap-add=SYS_PTRACE",
+		"--security-opt",
+		"seccomp=unconfined",
+		"--privileged",
+		"--init"
+	],
+
+	// "oryx build" will automatically install your dependencies and attempt to build your project
+	"postCreateCommand": "oryx build -p virtualenv_name=.venv --log-file /tmp/oryx-build.log --manifest-dir /tmp || echo 'Could not auto-build. Skipping.'"
+}
