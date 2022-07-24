@@ -5,6 +5,7 @@ resource "helm_release" "kube_state_metrics" {
   repository = "https://prometheus-community.github.io/helm-charts"
   chart      = "kube-state-metrics"
   namespace  = kubernetes_namespace.kube_state_metrics.metadata[0].name
+  version    = "4.13.0"
 }
 
 # https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/namespace
