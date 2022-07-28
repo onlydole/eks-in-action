@@ -1,5 +1,4 @@
 ---
-
 name: "Code Quality: Terraform"
 
 on:
@@ -13,23 +12,20 @@ jobs:
     name: Terraform
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Repository
-        uses: actions/checkout@v2
-        with:
-          fetch-depth: 1
+      - name: Check out repository
+        uses: actions/checkout@v3
 
-      - name: Setup Terraform
-        uses: hashicorp/setup-terraform@v1.2.1
-      
+      - name: Set up Terraform
+        uses: hashicorp/setup-terraform@v2
+        with:
+          cli_config_credentials_token: ${{ secrets.TF_API_TOKEN }}
+
       - name: Run `terraform fmt`
-        id: fmt
-        run: terraform fmt -diff -check -no-color -recursive
+        run: terraform fmt -check
 
       - name: Run `terraform init`
         id: init
         run: terraform init
 
       - name: Run `terraform validate`
-        id: validate
-        if: github.event_name == 'pull_request'
         run: terraform validate -no-color
