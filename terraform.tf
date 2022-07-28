@@ -19,4 +19,12 @@ terraform {
       version = "2.6.0"
     }
   }
+  backend "remote" {
+    hostname     = "app.terraform.io"
+    organization = "onlydole"
+
+    workspaces {
+      name = "eks-in-action"
+    }
+  }
 }
