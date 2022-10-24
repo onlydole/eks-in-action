@@ -8,7 +8,7 @@ data "aws_availability_zones" "available" {
 }
 module "vpc" {
   source  = "terraform-aws-modules/vpc/aws"
-  version = "3.14.2"
+  version = "3.18.0"
 
   name = var.project_name
   cidr = var.cidr
