@@ -14,7 +14,7 @@ provider "kubernetes" {
 
 module "eks" {
   source  = "terraform-aws-modules/eks/aws"
-  version = "18.26.6"
+  version = "19.5.1"
 
   manage_aws_auth_configmap = true
   cluster_name              = var.project_name
