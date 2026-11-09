@@ -16,7 +16,7 @@ terraform {
     # https://registry.terraform.io/providers/hashicorp/helm/latest/docs/resources/release
     helm = {
       source  = "hashicorp/helm"
-      version = "2.16.1"
+      version = "3.3.0"
     }
   }
   backend "remote" {
