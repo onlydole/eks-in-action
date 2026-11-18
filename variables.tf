@@ -56,6 +56,7 @@ variable "cluster_enabled_log_types" {
   default     = ["api", "audit", "authenticator", "controllerManager", "scheduler"]
 }
 
+# tflint-ignore: terraform_unused_declarations
 variable "cluster_write_kubeconfig" {
   type        = bool
   description = "Specify if Terraform sound output the Kubernetes configuration file. "
