@@ -54,7 +54,8 @@ A fresh install needs none of these steps. Older versions of this example used E
    kubectl get nodes
    ```
 
-1. Handle the cluster creator entry. If Terraform runs as the identity that created the cluster, `enable_cluster_creator_admin_permissions = true` tries to create a second entry for it and fails with `ResourceInUseException`. Either set it to `false` and keep the entry EKS made, or adopt that entry with temporary import blocks. Use the principal ARN that `list-access-entries` shows, and import the policy association only if `aws eks list-associated-access-policies` lists one.
+1. Handle the cluster creator entry. If Terraform runs as the identity that created the cluster, `enable_cluster_creator_admin_permissions = true` tries to create a second entry for it and fails with `ResourceInUseException`.
+   Either set it to `false` and keep the entry EKS made, or adopt that entry with temporary import blocks. Use the principal ARN that `list-access-entries` shows, and import the policy association only if `aws eks list-associated-access-policies` lists one.
 
    ```hcl
    import {
