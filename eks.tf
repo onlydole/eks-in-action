@@ -24,8 +24,11 @@ module "eks" {
   enabled_log_types  = var.cluster_enabled_log_types
 
   # Keep the public API endpoint so Terraform can reach the cluster
-  # with the Kubernetes and Helm providers.
-  endpoint_public_access = true
+  # with the Kubernetes and Helm providers. Narrow the allowed CIDRs
+  # with var.cluster_endpoint_public_access_cidrs.
+  endpoint_public_access       = true
+  endpoint_public_access_cidrs = var.cluster_endpoint_public_access_cidrs
+  endpoint_private_access      = true
 
   # Access entries replace the aws-auth ConfigMap. EKS adds entries for
   # managed node group roles on its own, and this grants the identity

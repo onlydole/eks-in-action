@@ -4,7 +4,9 @@
 
 Creating an EKS cluster and VPC in AWS.
 
-_Note:_ This example needs Terraform 1.8 or later.
+_Note:_ This example needs Terraform 1.5.7 or later.
+
+_Note:_ The EKS API endpoint is public and open to any address by default. Set `cluster_endpoint_public_access_cidrs` to your own IP range to narrow it.
 
 ## Table of Contents
 
