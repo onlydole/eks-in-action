@@ -24,7 +24,7 @@ variable "region" {
 variable "cluster_version" {
   type        = string
   description = "The Kubernetes version for our clusters"
-  default     = "1.22"
+  default     = "1.36"
 }
 
 variable "cluster_instance_type" {
@@ -56,6 +56,13 @@ variable "cluster_enabled_log_types" {
   default     = ["api", "audit", "authenticator", "controllerManager", "scheduler"]
 }
 
+variable "cluster_endpoint_public_access_cidrs" {
+  type        = list(string)
+  description = "CIDR blocks that can reach the public EKS API endpoint. The default allows any address, so narrow it to your own IP, for example [\"203.0.113.10/32\"]."
+  default     = ["0.0.0.0/0"]
+}
+
+# tflint-ignore: terraform_unused_declarations
 variable "cluster_write_kubeconfig" {
   type        = bool
   description = "Specify if Terraform sound output the Kubernetes configuration file. "

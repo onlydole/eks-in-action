@@ -1,22 +1,24 @@
 terraform {
+  required_version = ">= 1.5.7"
+
   required_providers {
 
     # https://registry.terraform.io/providers/hashicorp/kubernetes/latest
     kubernetes = {
       source  = "hashicorp/kubernetes"
-      version = "2.35.0"
+      version = "3.5.0"
     }
 
     # https://registry.terraform.io/providers/hashicorp/aws/latest
     aws = {
       source  = "hashicorp/aws"
-      version = "4.57.0"
+      version = "6.72.0"
     }
 
     # https://registry.terraform.io/providers/hashicorp/helm/latest/docs/resources/release
     helm = {
       source  = "hashicorp/helm"
-      version = "2.16.1"
+      version = "3.3.0"
     }
   }
   backend "remote" {
