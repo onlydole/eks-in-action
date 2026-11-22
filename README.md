@@ -4,7 +4,7 @@
 
 Creating an EKS cluster and VPC in AWS.
 
-_Note:_ You will need to ensure `wget` is installed locally for the EKS module to validate your EKS cluster's endpoint.
+_Note:_ This example needs Terraform 1.8 or later.
 
 ## Table of Contents
 

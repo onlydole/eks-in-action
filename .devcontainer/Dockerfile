@@ -1,2 +1,2 @@
 # See https://hub.docker.com/r/hashicorp/terraform for more information
-FROM hashicorp/terraform:1.2.6
+FROM hashicorp/terraform:1.17.1

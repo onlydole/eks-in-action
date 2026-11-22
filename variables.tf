@@ -24,7 +24,7 @@ variable "region" {
 variable "cluster_version" {
   type        = string
   description = "The Kubernetes version for our clusters"
-  default     = "1.22"
+  default     = "1.37"
 }
 
 variable "cluster_instance_type" {
@@ -56,6 +56,7 @@ variable "cluster_enabled_log_types" {
   default     = ["api", "audit", "authenticator", "controllerManager", "scheduler"]
 }
 
+# tflint-ignore: terraform_unused_declarations
 variable "cluster_write_kubeconfig" {
   type        = bool
   description = "Specify if Terraform sound output the Kubernetes configuration file. "
