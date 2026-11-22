@@ -23,6 +23,17 @@ module "eks" {
   vpc_id             = module.vpc.vpc_id
   enabled_log_types  = var.cluster_enabled_log_types
 
+  # Since v21 the module creates clusters without the default self-managed
+  # add-ons, so install the networking add-ons through the EKS add-on API.
+  # The VPC CNI goes in before the node group so nodes can become Ready.
+  addons = {
+    vpc-cni = {
+      before_compute = true
+    }
+    kube-proxy = {}
+    coredns    = {}
+  }
+
   # Keep the public API endpoint so Terraform can reach the cluster
   # with the Kubernetes and Helm providers. Narrow the allowed CIDRs
   # with var.cluster_endpoint_public_access_cidrs.
@@ -32,7 +43,9 @@ module "eks" {
 
   # Access entries replace the aws-auth ConfigMap. EKS adds entries for
   # managed node group roles on its own, and this grants the identity
-  # running Terraform cluster admin access.
+  # running Terraform cluster admin access. For a cluster created by an
+  # older version of this example, see "Upgrading an existing cluster"
+  # in the README first.
   enable_cluster_creator_admin_permissions = true
 
   create_kms_key = false
