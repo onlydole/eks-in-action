@@ -25,7 +25,8 @@ module "eks" {
 
   # Since v21 the module creates clusters without the default self-managed
   # add-ons, so install the networking add-ons through the EKS add-on API.
-  # The VPC CNI goes in before the node group so nodes can become Ready.
+  # before_compute creates the VPC CNI ahead of the node group, which then
+  # waits on a short timer. It doesn't wait for the CNI to be ready.
   addons = {
     vpc-cni = {
       before_compute = true

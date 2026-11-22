@@ -12,6 +12,8 @@ _Note:_ The EKS API endpoint is public and open to any address by default. To na
 cluster_endpoint_public_access_cidrs = ["203.0.113.10/32"]
 ```
 
+_Note:_ The identity that runs `terraform plan` needs `eks:DescribeAddonVersions`, because the EKS module looks up add-on versions during the plan.
+
 ## Table of Contents
 
 - [EKS in Action](#eks-in-action)
@@ -37,25 +39,42 @@ On that page, you will find instructions for macOS (using `brew`), Windows (usin
 
 ## Upgrading an existing cluster
 
-A fresh install needs none of these steps. Older versions of this example used EKS module v18 and the `aws-auth` ConfigMap. To move a cluster built with them, go in stages and read every plan before you apply it. The [EKS module v20 upgrade guide](https://github.com/terraform-aws-modules/terraform-aws-eks/blob/v21.29.0/docs/UPGRADE-20.0.md) has the details.
+A fresh install needs none of these steps. Older versions of this example used EKS module v18 and the `aws-auth` ConfigMap.
+To move a cluster built with them, go in stages and read every plan before you apply it.
+The [EKS module v20 upgrade guide](https://github.com/terraform-aws-modules/terraform-aws-eks/blob/v21.29.0/docs/UPGRADE-20.0.md) and the AWS guide to [migrating aws-auth entries to access entries](https://docs.aws.amazon.com/eks/latest/userguide/migrating-access-entries.html) have the details.
 
 1. Switch the cluster to access entries before you change any Terraform code. Keep `aws-auth` in place for now.
+   Wait for the cluster to return to `ACTIVE` before the next step.
 
    ```shell
    aws eks update-cluster-config --name eks-in-action --access-config authenticationMode=API_AND_CONFIG_MAP
+   aws eks wait cluster-active --name eks-in-action
    ```
 
-   EKS then creates access entries for the original cluster creator and for the managed node group roles.
-
-1. Check that access still works before anything else changes.
+1. Check that the managed node group role has its access entry. EKS adds it for you, and nodes stop joining if it's missing once `aws-auth` is gone.
+   Look up the node role, then describe its entry. Its type should be `EC2_LINUX`.
 
    ```shell
-   aws eks list-access-entries --cluster-name eks-in-action
-   kubectl get nodes
+   aws eks list-nodegroups --cluster-name eks-in-action
+   aws eks describe-nodegroup --cluster-name eks-in-action --nodegroup-name <worker-node-group> --query nodegroup.nodeRole
+   aws eks describe-access-entry --cluster-name eks-in-action --principal-arn <node-role-arn>
    ```
 
-1. Handle the cluster creator entry. If Terraform runs as the identity that created the cluster, `enable_cluster_creator_admin_permissions = true` tries to create a second entry for it and fails with `ResourceInUseException`.
-   Either set it to `false` and keep the entry EKS made, or adopt that entry with temporary import blocks. Use the principal ARN that `list-access-entries` shows, and import the policy association only if `aws eks list-associated-access-policies` lists one.
+1. Check that the principal Terraform runs as has cluster admin through an access entry.
+   `kubectl get nodes` isn't proof, because it can still succeed through `aws-auth` in this mode.
+   Run `aws sts get-caller-identity` as that principal. For an assumed role, use the role ARN in the form `arn:aws:iam::111122223333:role/terraform`, not the session ARN.
+
+   ```shell
+   aws eks describe-access-entry --cluster-name eks-in-action --principal-arn arn:aws:iam::111122223333:role/terraform
+   aws eks list-associated-access-policies --cluster-name eks-in-action --principal-arn arn:aws:iam::111122223333:role/terraform
+   ```
+
+   If the principal created the cluster, EKS already made its entry. Otherwise create one with `aws eks create-access-entry`.
+   If `AmazonEKSClusterAdminPolicy` isn't listed with a `cluster` scope, add it with `aws eks associate-access-policy`.
+   Don't go on until the policy shows up for that principal.
+
+1. Hand the entry to Terraform. It already exists, so `enable_cluster_creator_admin_permissions = true` would try to create a second one and fail with `ResourceInUseException`.
+   Either set it to `false` and leave the entry outside Terraform, or adopt it with temporary import blocks.
 
    ```hcl
    import {
@@ -71,13 +90,23 @@ A fresh install needs none of these steps. Older versions of this example used E
 
 1. Set `cluster_version` to the version the cluster runs now, from `aws eks describe-cluster --name eks-in-action --query cluster.version`, so the module upgrade doesn't also change Kubernetes.
 
+1. Decide whether the VPC module should adopt the VPC's default resources now. VPC module v4 and later manage the default security group, network ACL, and route table, and v3 didn't.
+   On first adoption, Terraform removes every rule from the default security group, removes every rule from the default network ACL and then adds back the module's allow-all rules, and removes every route from the default route table.
+   To defer that for an existing VPC, add these to the `vpc` module and plan the adoption later on its own.
+
+   ```hcl
+   manage_default_security_group = false
+   manage_default_network_acl    = false
+   manage_default_route_table    = false
+   ```
+
 1. Plan the module upgrade and check these parts of it.
-   - The `aws-auth` ConfigMap is destroyed. That is expected, because every entry in it was a managed node group role and EKS now covers those with access entries. Apply only after step 2 succeeds.
+   - The `aws-auth` ConfigMap is destroyed. That is expected, because every entry in it was a managed node group role. Apply only after steps 2 and 3 succeed.
    - The `worker` node group is replaced, because v21 node groups default to AL2023 instead of AL2. Pods move to the new nodes.
    - The cluster already runs self-managed VPC CNI, kube-proxy, and CoreDNS. Add `resolve_conflicts_on_create = "OVERWRITE"` to each entry in `addons` for this apply so EKS adopts them.
-   - VPC module v4 and later manage the VPC's default security group, network ACL, and route table. The plan adopts them, and the module's defaults remove all rules from the default security group.
+   - The VPC default resources change as described in step 6, unless you deferred them.
 
-1. Upgrade Kubernetes one minor version per apply. Raise `cluster_version` by one, apply, and repeat until you reach the default.
+1. Upgrade Kubernetes one minor version per apply. Raise `cluster_version` by one, apply, and repeat until you reach the default of 1.36.
 
 ## Reading material
 
