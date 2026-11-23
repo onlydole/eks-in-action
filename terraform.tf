@@ -12,7 +12,7 @@ terraform {
     # https://registry.terraform.io/providers/hashicorp/aws/latest
     aws = {
       source  = "hashicorp/aws"
-      version = "6.72.0"
+      version = "6.73.0"
     }
 
     # https://registry.terraform.io/providers/hashicorp/helm/latest/docs/resources/release
